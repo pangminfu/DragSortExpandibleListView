@@ -1,79 +1,23 @@
-DragSortListView
+DragSortExpandiableListView
 ================
 
-# NOTICE: No longer maintained.
-
-I do not have much time to devote to this project so I am
-dropping support for the time being. Sorry everybody!
-
-News
-----
-
-**April 2, 2013**: Hey all. If you want to send a pull request,
-please read the [Contributing](https://github.com/bauerca/drag-sort-listview#contributing) section first. Thanks!
-
-**Feb. 9, 2013**: Version 0.6.0. Consolidated remove modes to
-`click_remove` and `fling_remove`. No more fling remove while
-dragging; fling anywhere on item to remove it.
-[Leszek Mzyk](https://github.com/imbryk) is a bona fide code-slanger.
-
-**Jan. 10, 2013**: Version 0.5.0 is released. Supports ListView
-multi-choice and single-choice modes thanks to the hard work of
-[Mattias Flodin](https://github.com/mattiasflodin)! Awesome-sauce.
-Check out the new demos.
-
-**Nov. 23, 2012**: Hmmm, what's this? &rarr; [Gittip](https://www.gittip.com/bauerca) :)
-
-**Nov. 17, 2012**: [Drag-Sort Demos](https://play.google.com/store/apps/details?id=com.mobeta.android.demodslv)
-app in Google Play Store!
-
-**Nov. 15, 2012**: Smooth operation! Drops and removals are animated.
-Also, DragSortController now provides a convenience
-click-to-remove feature (see [XML attrs](https://github.com/bauerca/drag-sort-listview#xml-layout-declaration)
-and [RemoveListener](https://github.com/bauerca/drag-sort-listview#dragsortlistviewremovelistener)
-sections).
-
-**Nov. 11, 2012**: Mavenized.
-Thanks to [Andreas Schildbach (Goonie)](https://github.com/Goonie)!
-
-**Oct. 30, 2012**: DragSortCursorAdapter class helps you reorder
-a Cursor-backed ListAdapter. Look at ResourceDragSortCursorAdapter
-and SimpleDragSortCursorAdapter as well in [the API](
-http://bauerca.github.com/drag-sort-listview).
-
-**Oct. 19, 2012**: Public API documentation is up at
-http://bauerca.github.com/drag-sort-listview.
-
-**Oct. 19, 2012**: Refactoring rampage. Backward compatibility is slightly
-broken. New features make it worthwhile :) and include: total floating
-View customization, total control over drag start/stop,
-and a helper class implementing common patterns (long-press to drag,
-fling-to-remove, etc.). Thanks to
-[Dan Hulme (orac)](https://github.com/orac)
-for getting all this rolling!
-Check out the extensively updated demos and usage section below.
-
-**Sept. 26, 2012**: Drag-sorting is now animated! (optional, of course)
-Items slide around underneath the floating (dragged) View.
+I had customize this DragSortExpandiableListView refer to this https://github.com/bauerca/drag-sort-listview to make android default Expandible ListView can perform drag and drop. Thanks to this repo author @bauerca 
 
 Overview
 --------
 
-DragSortListView (DSLV) is an extension of the Android ListView that enables
-drag-and-drop reordering of list items. It is a ~~major overhaul~~ complete
+DragSortExpandiableListView (DSLV) is an extension of the Android ExpandiableListView that enables
+drag-and-drop reordering of list group items only. It is a ~~major overhaul~~ complete
 rewrite of
 the [TouchInterceptor](https://github.com/android/platform_packages_apps_music/blob/master/src/com/android/music/TouchInterceptor.java) (TI) 
 meant to give drag-sorting a polished feel. Some key features are:
 
-1. Clean drag and drop (no visual glitches; I hope!)
+1. drag and drop
 2. Intuitive and smooth scrolling while dragging.
 3. Support for heterogeneous item heights.
 4. Public `startDrag()` and `stopDrag()` methods.
 5. Public interface for customizing the floating View.
 
-DragSortListView is useful for all kinds of prioritized lists:
-favorites, playlists, checklists, etc. Would love to hear about
-your use case or app by email.
 I hope you find it useful; and please, help me improve the thing!
 
 Widget usage
@@ -102,17 +46,6 @@ Number 1 is essential. As mentioned above, 2 and 3 can
 be handled by the DragSortController helper class. Keep reading,
 then head to the
 demo and start studying some examples.
-
-
-### XML layout declaration
-
-DragSortListView can be declared in an XML layout file just like
-the ListView. Several example layout files are
-[provided in the demo](https://github.com/bauerca/drag-sort-listview/blob/master/demo/res/layout/).
-The available attributes (in addition to the usual
-ListView attributes) are given below. Read each bullet as
-
-* `<xml attr>`: (`<datatype>`, `<default value>`) `<description>`.
 
 #### XML attributes
 
@@ -316,86 +249,6 @@ be passed into the DragSortController (the id can be set in XML if
 drag handle of an item, and a gesture is detected that should start a
 drag, the drag starts.
 
-
-Additional documentation
-------------------------
-
-There is limited documentation in the DSLV.
-You can check it
-out with Javadoc by navigating to `/path/to/drag-sort-listview/src/` and
-typing
-
-    javadoc com.mobeta.android.dslv *
-
-The javadoc can be viewed on the DSLV project page:
-http://bauerca.github.com/drag-sort-listview. Sorry for the many
-broken links at the moment. I am slowly getting to this.
-
-Installation
-------------
-
-Download and install the [Android sdk](http://developer.android.com/sdk/index.html). Clone/Download/Fork the repo
-through GitHub or via (read-only)
-
-    git clone https://github.com/bauerca/drag-sort-listview.git
-
-### Ant
-
-Execute the following in both the drag-sort-listview/library/ and
-drag-sort-listview/demo/ directories (assuming
-/path/to/android_sdk/tools is in your PATH):
-
-    android update project --path ./
-
-To test out the demo, navigate to drag-sort-listview/demo/ and
-execute
-
-    ant debug install
-
-to build and install the demo on your connected device/emulator.
-
-### Maven
-
-A simple
-
-    mvn clean install
-
-should suffice to build and put the DSLV lib and demo in your local
-maven repository. To include in your project, add the following
-dependency to your pom.xml:
-
-```xml
-<dependency>
-    <groupId>com.mobeta.android.dslv</groupId>
-    <artifactId>drag-sort-listview</artifactId>
-    <version>0.6.1-SNAPSHOT</version>
-    <type>apklib</type>
-</dependency>
-```
-
-### Installation in Eclipse (Indigo)
-
-The first step is to choose File > Import or right-click in the Project Explorer
-and choose Import. If you don't use E-Git to integrate Eclipse with Git, skip
-the rest of this paragraph. Choose "Projects from Git" as the import source.
-From the Git page, click Clone, and enter the URI of this repository. That's the
-only text box to fill in on that page. On the following pages, choose which
-branches to clone (probably all of them) and where to keep the local checkout,
-and then click Finish. Once the clone has finished, pick your new repository
-from the list, and on the following page select 'Use the New Projects wizard'.
-
-From here the process is the same even if you don't use E-Git. Choose 'Android
-Project from Existing Code' and then browse to where you checked out DSLV. You
-should then see two projects in the list: one named after the directory name,
-and the other called com.mobeta.android.demodslv.Launcher . The top one is the
-library project, and the bottom one the demo project. You probably want both at
-first, so just click Finish.
-
-Finally, to add the library to your application project, right-click your
-project in the Package Explorer and select Properties. Pick the "Android" page,
-and click "Add..." from the bottom half. You should see a list including the
-DSLV project as well as any others in your workspace.
-
 Contributing
 ------------
 
@@ -415,34 +268,6 @@ only one (of course, you should help me add more). Here's the list:
   the behavior. Rather, try to modify or subclass DragSortController
   for your particular needs. That said, if a "must-have" touch
   pattern arises, I think there is some wiggle room in this rule.
-
-
-Debugging
----------
-
-If you have python and [matplotlib](http://matplotlib.sourceforge.net/)
-installed, you can use the script dslv.py
-to debug drag-sort behavior. This script
-is found in the project tools/ directory.
-
-To enable, just set the `dslv:track_drag_sort` attribute to
-`"true"` in XML. While drag-sorting on your emulator or device,
-this tracking causes the DSLV to periodically dump its state to
-a file called dslv_state.txt in the device/emulator /sdcard/ directory. 
-
-Navigate to the location of dslv.py, and do 
-
-    adb [-e|-d|-s device] pull /sdcard/dslv_state.txt
-
-then simply run
-
-    python dslv.py
-
-An image should appear that represents the DSLV in the final
-recorded state. Right and left keys allow stepping
-through the recorded drag-sort frame-by-frame; up/down keys jump
-30 frames. This tool has
-been very useful for debugging jumpy behavior while drag-scrolling.
 
 License
 -------
